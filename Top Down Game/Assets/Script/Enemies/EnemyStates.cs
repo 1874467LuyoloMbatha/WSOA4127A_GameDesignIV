@@ -11,6 +11,8 @@ public class EnemyStates : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
+    float health; 
+
     //Patroling//
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -99,10 +101,16 @@ public class EnemyStates : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    public void TakeDamage() 
+    public void TakeDamage(int damage) 
     {
-    
-    }
 
-    //ended @4:19//
+    } //ended @4:19//
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, sightRange); 
+    }
 }
