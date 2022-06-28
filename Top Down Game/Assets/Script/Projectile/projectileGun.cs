@@ -39,7 +39,6 @@ public class projectileGun : MonoBehaviour
     private void Update()
     {
         MyInput();
-        
     }
 
     private void MyInput()
@@ -52,11 +51,19 @@ public class projectileGun : MonoBehaviour
         if (readyToShoot && shooting && bulletsLeft > 0) //2:45
         {
             //set bullets shot to 0 
-            bulletsShot = 0; 
-        
-        } 
+            bulletsShot = 0;
+
+            Shoot();
 
         
+        } 
+    }
+
+    private void Shoot() 
+    {
+        readyToShoot = false;
+        bulletsLeft--;
+        bulletsShot++; 
     
     }
 
