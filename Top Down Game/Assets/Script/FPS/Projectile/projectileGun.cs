@@ -25,6 +25,11 @@ public class projectileGun : MonoBehaviour
     //Reference// 
     public Camera fpsCam;
     public Transform attackPoint;
+     
+
+    //Graphics//
+    public GameObject muzzleFlash;
+    public TextMeshProUGUI ammunitionDisplay;
 
     //Bug fixes
     public bool allowInvoke = true;
@@ -39,6 +44,11 @@ public class projectileGun : MonoBehaviour
     private void Update()
     {
         MyInput();
+
+        //Set ammo display//
+        if (ammunitionDisplay != null)
+            ammunitionDisplay.SetText(bulletsLeft / bulletsPerTap + " / " + magazineSize / bulletsPerTap);
+
     }
 
     private void MyInput()
@@ -47,6 +57,10 @@ public class projectileGun : MonoBehaviour
         if (allowButtonHold) shooting = Input.GetKey(KeyCode.Mouse0);
         else shooting = Input.GetKeyDown(KeyCode.Mouse0); //Tap everytime you need to shoot.
 
+        //Reloading//
+        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading) Reload();
+        if (readyToShoot && shooting && !reloading && bulletsLeft <= 0) Reload(); 
+
         //Shooting//
         if (readyToShoot && shooting && bulletsLeft > 0) //2:45
         {
@@ -54,8 +68,6 @@ public class projectileGun : MonoBehaviour
             bulletsShot = 0;
 
             Shoot();
-
-        
         } 
     }
 
@@ -94,6 +106,11 @@ public class projectileGun : MonoBehaviour
         currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
         currentBullet.GetComponent<Rigidbody>().AddForce(fpsCam.transform.up * upwardForce, ForceMode.Impulse); /// upward force is only for boncing grenades
 
+        //Instantiate muzzle flash//
+        if (muzzleFlash != null)
+            Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity); 
+        //STOPPED @7:50
+
         
         bulletsLeft--; //count down
         bulletsShot++; //count up
@@ -106,13 +123,26 @@ public class projectileGun : MonoBehaviour
         }
 
         //If more than one bulletsPerTap make sure to repeast shoot function(i.e shotgun)
-        if (bulletsShot < bulletsPerTap) 
-        { }
+        if (bulletsShot < bulletsPerTap)
+            Invoke("Shoot",timeBetweenShots);
         //Stopped @6:15//
 
     }
     private void ResetShot()
     {
+        readyToShoot = true;
+        allowInvoke = true; 
+    }
 
+    private void Reload() 
+    {
+        reloading = true;
+        Invoke("ReloadFinished", reloadTime); 
+    }
+
+    private void ReloadFinished() 
+    {
+        bulletsLeft = magazineSize;
+        reloading = false;
     }
 }
