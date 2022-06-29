@@ -62,8 +62,54 @@ public class projectileGun : MonoBehaviour
     private void Shoot() 
     {
         readyToShoot = false;
-        bulletsLeft--;
-        bulletsShot++; 
+
+        //Find the exact hit position(FPS/Dont need for this game)//
+        Ray ray = fpsCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));//A ray through middle of screen.
+        RaycastHit hit;
+
+        //Check if ray hits something//
+        Vector3 targetPoint;
+        if (Physics.Raycast(ray, out hit))
+            targetPoint = hit.point;
+        else
+            targetPoint = ray.GetPoint(75); // a point far away from the player
+
+        //Calculate direction from attackPoint to targetPoint//
+        Vector3 directionWithoutSpread = targetPoint - attackPoint.position;
+
+        //Calculate Spread//
+        float xSpread = Random.Range(-spread, spread);
+        float ySpread = Random.Range(-spread, spread);
+
+        //Calculate new Direction with spread//
+        Vector3 directionWithSpread = directionWithoutSpread + new Vector3(xSpread,ySpread,0);
+
+        //Instantiate Bullet// 
+        GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity);
+
+        //Rotate bullet to shoot direction//
+        currentBullet.transform.forward = directionWithSpread.normalized;
+        
+        //Add forces to bullets// Stopped @5:18
+
+
+
+
+
+
+
+
+
+        bulletsLeft--; //count down
+        bulletsShot++; //count up
+
+
+
+       
+        
+
+
+
     
     }
 
