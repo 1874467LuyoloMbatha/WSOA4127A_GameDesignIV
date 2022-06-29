@@ -89,33 +89,30 @@ public class projectileGun : MonoBehaviour
 
         //Rotate bullet to shoot direction//
         currentBullet.transform.forward = directionWithSpread.normalized;
-        
+
         //Add forces to bullets// Stopped @5:18
+        currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
+        currentBullet.GetComponent<Rigidbody>().AddForce(fpsCam.transform.up * upwardForce, ForceMode.Impulse); /// upward force is only for boncing grenades
 
-
-
-
-
-
-
-
-
+        
         bulletsLeft--; //count down
         bulletsShot++; //count up
 
+        //Invoke resetShot function//
+        if (allowInvoke)
+        {
+            Invoke("ResetShot", timeBeweenSHooting);
+            allowInvoke = false;
+        }
 
+        //If more than one bulletsPerTap make sure to repeast shoot function(i.e shotgun)
+        if (bulletsShot < bulletsPerTap) 
+        { }
+        //Stopped @6:15//
 
-       
-        
-
-
-
-    
     }
+    private void ResetShot()
+    {
 
-
-
-
-
-
+    }
 }
