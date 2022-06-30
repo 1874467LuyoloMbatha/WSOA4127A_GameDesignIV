@@ -349,10 +349,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 11
   groundedDrag: 5
+  jumpForce: 10
+  jumpCooldown: 0.25
+  airMultiplier: 0.4
   playerHeight: 2
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
+  jumpKey: 32
   orientation: {fileID: 1023218341}
 --- !u!143 &749081947
 CharacterController:
