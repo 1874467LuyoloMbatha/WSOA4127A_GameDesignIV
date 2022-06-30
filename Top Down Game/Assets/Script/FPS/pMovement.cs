@@ -36,6 +36,7 @@ public class pMovement : MonoBehaviour
 
     private void Start()
     {
+        readyToJump = true;
         rBody = GetComponent<Rigidbody>();
         rBody.freezeRotation = true; // prevents object from falling over.
     }
@@ -83,7 +84,8 @@ public class pMovement : MonoBehaviour
 
         //on ground//
         if(grounded)
-           rBody.AddForce(movementDirection.normalized * moveSpeed * 10f, ForceMode.Force); //mess around with this float variabble theough.
+            rBody.AddForce(movementDirection.normalized * moveSpeed * 10f, ForceMode.Force); //mess around with this float variabble theough.
+
 
         //In Air//
         else if(!grounded)
