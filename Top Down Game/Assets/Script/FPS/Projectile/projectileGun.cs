@@ -19,6 +19,10 @@ public class projectileGun : MonoBehaviour
     int bulletsLeft, bulletsShot;
     //stopped @1:22//
 
+    //Recoil//
+    public Rigidbody playerRBody;
+    public float recoilForce; 
+
     //Bools//
     bool shooting, readyToShoot, reloading;
 
@@ -106,6 +110,7 @@ public class projectileGun : MonoBehaviour
         currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
         currentBullet.GetComponent<Rigidbody>().AddForce(fpsCam.transform.up * upwardForce, ForceMode.Impulse); /// upward force is only for boncing grenades
 
+
         //Instantiate muzzle flash//
         if (muzzleFlash != null)
             Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity); 
@@ -120,13 +125,15 @@ public class projectileGun : MonoBehaviour
         {
             Invoke("ResetShot", timeBeweenSHooting);
             allowInvoke = false;
+
+            //Add recoil to player//
+            playerRBody.AddForce(-directionWithoutSpread.normalized * recoilForce, ForceMode.Impulse);
         }
 
         //If more than one bulletsPerTap make sure to repeast shoot function(i.e shotgun)
         if (bulletsShot < bulletsPerTap)
             Invoke("Shoot",timeBetweenShots);
         //Stopped @6:15//
-
     }
     private void ResetShot()
     {
