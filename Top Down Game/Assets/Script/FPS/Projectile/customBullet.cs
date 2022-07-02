@@ -36,15 +36,33 @@ public class customBullet : MonoBehaviour
         //When  to explode:
         if (collissions > maxCollissions) Explode();
 
-        //Count down lifetime
+        //Count down lifetime 
         maxLifetime -= Time.deltaTime;
         if (maxLifetime <= 0) Explode(); 
     }
 
     private void Explode() 
     {
+        //Instantiate explosion 
+        if (explosion != null) Instantiate(explosion, transform.position, Quaternion.identity);
+
+        //Check for enemies
+        Collider[] enemies = Physics.OverlapSphere(transform.position, explosionRange, whatIsEnemies);
+        for (int i = 0; i < enemies.Length; i++) 
+        {
+            //Get component of enemy and call take damage.
+
+            //Example @4:32
+        
+        }
+        //Add a small delay to avoid issues//
+        Invoke("Delay", 0.05f);
     
     }
+    private void Delay() 
+    {
+        Destroy(gameObject);
+    } 
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -56,7 +74,6 @@ public class customBullet : MonoBehaviour
 
         //Explode if bullet hits enemy directly and explodeOnTouch is activated
         if (collision.collider.CompareTag("Enemy") && explosionOnTouch) Explode();
-        //STOPPED//
     }
 
     private void SetUp() 
@@ -72,5 +89,10 @@ public class customBullet : MonoBehaviour
 
         //Set gravity//
         rBody.useGravity = useGravity;
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, explosionRange); 
     }
 }
