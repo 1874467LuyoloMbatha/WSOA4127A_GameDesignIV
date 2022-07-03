@@ -53,6 +53,7 @@ public class customBullet : MonoBehaviour
             //Get component of enemy and call take damage.
 
             //Example @4:32
+            enemies[i].GetComponent<EnemyStates>().TakeDamage(explosionDamage);
         
         }
         //Add a small delay to avoid issues//

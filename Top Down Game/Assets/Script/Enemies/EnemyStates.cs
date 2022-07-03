@@ -11,7 +11,8 @@ public class EnemyStates : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
-    float health; 
+    //Health SetUp
+   public float health; 
 
     //Patroling//
     public Vector3 walkPoint;
@@ -103,8 +104,18 @@ public class EnemyStates : MonoBehaviour
 
     public void TakeDamage(int damage) 
     {
+        health -= damage;
+
+        if (health <= 0) Invoke(nameof(DestroyEnemy), .5f);
+         
 
     } //ended @4:19//
+
+    private void DestroyEnemy()
+    {
+        Destroy(gameObject); 
+        
+    }
 
     private void OnDrawGizmosSelected()
     {

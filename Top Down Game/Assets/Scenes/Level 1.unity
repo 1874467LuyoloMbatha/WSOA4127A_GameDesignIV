@@ -630,7 +630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 875552ffa31fbea488d2b1e92c7fa8c7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1171223755971760607, guid: 875552ffa31fbea488d2b1e92c7fa8c7, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1069,6 +1069,36 @@ MonoBehaviour:
   muzzleFlash: {fileID: 0}
   ammunitionDisplay: {fileID: 0}
   allowInvoke: 1
+--- !u!1 &718069247
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 718069248}
+  m_Layer: 0
+  m_Name: 'Attack point (Launcher) '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &718069248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718069247}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.32999992, y: 1.46, z: 2.66}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1407815962}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &749081945
 GameObject:
   m_ObjectHideFlags: 0
@@ -1698,7 +1728,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 67f2b3845644c5240bfec9587e79c412, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1265042395790422039, guid: 67f2b3845644c5240bfec9587e79c412, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2361,11 +2391,11 @@ GameObject:
   - component: {fileID: 1237418035}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!143 &1237418030
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2455,8 +2485,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1237418029}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.4, y: 0.88, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.8, y: 0.88, z: 14.13}
+  m_LocalScale: {x: 0.8, y: 1.66, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -2481,13 +2511,14 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
+  health: 10
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
-  timeBetweenAttacks: 0
+  timeBetweenAttacks: 1
   alreadyAttacked: 0
-  projectile: {fileID: 0}
+  projectile: {fileID: 7611327217607275379, guid: 8e64c3cd8482124458bb483b53f31369, type: 3}
   sightRange: 10
-  attackRange: 5
+  attackRange: 8
   playerInSightRange: 0
   playerInAttackRange: 0
 --- !u!195 &1237418036
@@ -2674,6 +2705,7 @@ Transform:
   m_Children:
   - {fileID: 663157694}
   - {fileID: 458726116}
+  - {fileID: 718069248}
   m_Father: {fileID: 963194228}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2889,11 +2921,45 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1457822080}
   m_CullTransparentMesh: 1
+--- !u!1 &1622703596 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 67f2b3845644c5240bfec9587e79c412, type: 3}
+  m_PrefabInstance: {fileID: 1001972963}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1622703597 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 67f2b3845644c5240bfec9587e79c412, type: 3}
   m_PrefabInstance: {fileID: 1001972963}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1622703598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622703596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d8d5d0fd2378b43a6e345d82394d16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 4580314850103603352, guid: 407740a495ec43949857bbdb3fcc9889, type: 3}
+  shootForce: 10
+  upwardForce: 5
+  timeBeweenSHooting: 2
+  spread: 0
+  reloadTime: 1.5
+  timeBetweenShots: 2
+  magazineSize: 10
+  bulletsPerTap: 1
+  allowButtonHold: 0
+  playerRBody: {fileID: 749081952}
+  recoilForce: 0
+  fpsCam: {fileID: 963194227}
+  attackPoint: {fileID: 718069248}
+  muzzleFlash: {fileID: 0}
+  ammunitionDisplay: {fileID: 0}
+  allowInvoke: 1
 --- !u!4 &1691649464 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 875552ffa31fbea488d2b1e92c7fa8c7, type: 3}
@@ -3158,60 +3224,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &3697989412375561454
-PrefabInstance:
+--- !u!1 &2129947385 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3832703582600972128, guid: bceefb2a39f6db74d9bc9d006687b7f1, type: 3}
+  m_PrefabInstance: {fileID: 1123777763}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2129947386
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3808739864702052898, guid: 407740a495ec43949857bbdb3fcc9889, type: 3}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3808739864702052898, guid: 407740a495ec43949857bbdb3fcc9889, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.22
-      objectReference: {fileID: 0}
-    - target: {fileID: 3808739864702052898, guid: 407740a495ec43949857bbdb3fcc9889, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 3808739864702052898, guid: 407740a495ec43949857bbdb3fcc9889, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2.94
-      objectReference: {fileID: 0}
-    - target: {fileID: 3808739864702052898, guid: 407740a495ec43949857bbdb3fcc9889, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 3808739864702052898, guid: 407740a495ec43949857bbdb3fcc9889, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 3808739864702052898, guid: 407740a495ec43949857bbdb3fcc9889, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3808739864702052898, guid: 407740a495ec43949857bbdb3fcc9889, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3808739864702052898, guid: 407740a495ec43949857bbdb3fcc9889, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 3808739864702052898, guid: 407740a495ec43949857bbdb3fcc9889, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3808739864702052898, guid: 407740a495ec43949857bbdb3fcc9889, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4580314850103603352, guid: 407740a495ec43949857bbdb3fcc9889, type: 3}
-      propertyPath: m_Name
-      value: Grenade
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 407740a495ec43949857bbdb3fcc9889, type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129947385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d8d5d0fd2378b43a6e345d82394d16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 0}
+  shootForce: 0
+  upwardForce: 0
+  timeBeweenSHooting: 0
+  spread: 0
+  reloadTime: 0
+  timeBetweenShots: 0
+  magazineSize: 0
+  bulletsPerTap: 0
+  allowButtonHold: 0
+  playerRBody: {fileID: 0}
+  recoilForce: 0
+  fpsCam: {fileID: 0}
+  attackPoint: {fileID: 0}
+  muzzleFlash: {fileID: 0}
+  ammunitionDisplay: {fileID: 0}
+  allowInvoke: 1
