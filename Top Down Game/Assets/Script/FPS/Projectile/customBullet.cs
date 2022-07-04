@@ -70,6 +70,14 @@ public class customBullet : MonoBehaviour
         //Don't count collissions with other bullets//
         // if (collision.collider.CompareTag("Bullet")) return;
 
+        //This is where enemies take DAMAGE(ANOTHER TUTORIAL)//
+        if (collision.gameObject.TryGetComponent<enemyHealth>(out enemyHealth enemyComponent)) 
+        {
+            enemyComponent.TakeDamage(explosionDamage);
+        
+        }
+
+
         //Count up collisions
         collissions++;
 
@@ -86,7 +94,7 @@ public class customBullet : MonoBehaviour
         physics_mat.bounceCombine = PhysicMaterialCombine.Maximum;
 
         //Assign material to collider//
-        GetComponent<SphereCollider>().material = physics_mat;
+        GetComponent<CapsuleCollider>().material = physics_mat; //Was sphere collider
 
         //Set gravity//
         rBody.useGravity = useGravity;
