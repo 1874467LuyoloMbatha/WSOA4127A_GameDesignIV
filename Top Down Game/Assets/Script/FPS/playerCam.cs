@@ -14,12 +14,25 @@ public class playerCam : MonoBehaviour
 
     private void Start()
     {
-       Cursor.lockState = CursorLockMode.Locked;
-       Cursor.visible = false;
+       
     }
 
     private void Update()
     {
+        //Cursor//
+        if (Input.GetKeyDown("4")) //Hide//
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
+        if (Input.GetKeyDown("5")) //Hide//
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+
+
         //get mouse input//
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
